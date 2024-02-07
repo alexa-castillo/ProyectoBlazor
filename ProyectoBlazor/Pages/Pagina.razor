@@ -1,0 +1,40 @@
+﻿@page "/pag"
+@using ProyectoBlazor.Componente;
+@using ProyectoBlazor.Data;
+
+
+<h1 class="mb-4">Página de Saludo</h1>
+
+<div class="mb-3">
+<div class="form-group">
+    <label for="nombre">Ingresa tu nombre:</label>
+    <input type="text" class="form-control" @bind="Nombre" />
+</div>
+</div>
+<div class="mb-3">
+    <button class="btn btn-primary mb-3" @onclick="MostrarSaludo">Saludar</button>
+</div>
+@if (!string.IsNullOrEmpty(Saludo))
+{
+    <div class="alert alert-success" role="alert">
+        <strong>@Saludo</strong>
+    </div>
+}
+
+@code {
+    private string Nombre { get; set; }
+    private string Saludo { get; set; }
+
+    private void MostrarSaludo()
+    {
+        if (!string.IsNullOrEmpty(Nombre))
+        {
+            Saludo = $"¡Hola, {Nombre}!";
+        }
+        else
+        {
+            Saludo = "Por favor, ingresa tu nombre.";
+        }
+    }
+}
+
